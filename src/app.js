@@ -20,6 +20,11 @@ app.use(express.json())
 // app.get('/register', (req,res) => {
 //     res.render('register')
 // })
+
+
+
+
+// All crud operation done
 // user create
 app.post('/create', async (req,res) => {
     const {username, email , password} = req.body;

@@ -50,8 +50,9 @@ app.post('/update', async (req,res) => {
 })
 
 // findOneAndDelete
-app.post('/delete', (req,res) => {
-    res.send('Delete');
+app.post('/delete', async (req,res) => {
+    const deleteUser = await userModel.findOneAndDelete({username:"himanshu"})
+    res.send(deleteUser);
 })
 
 

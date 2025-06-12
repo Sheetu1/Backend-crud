@@ -20,8 +20,8 @@ app.use(express.json())
 // app.get('/register', (req,res) => {
 //     res.render('register')
 // })
-
-app.post('/register', async (req,res) => {
+// user create
+app.post('/create', async (req,res) => {
     const {username, email , password} = req.body;
     const newUser = await userModel.create({
         username,
@@ -29,6 +29,27 @@ app.post('/register', async (req,res) => {
         password
     })
     res.send(newUser);
+})
+// findOne
+app.post('/read',  async (req,res) => {
+    userFind = await userModel.findOne({email: "divya@gmail.com"})
+    res.send(userFind);
+})
+// fineAll
+
+app.post('/readAll',  async (req,res) => {
+    userFind = await userModel.find({email})
+    res.send(userFind);
+})
+
+// findOneAndUpdate
+
+app.post('/update', (req,res) => {
+    res.send('hello');
+})
+// findOneAndDelete
+app.post('/delete', (req,res) => {
+    res.send('Delete');
 })
 
 

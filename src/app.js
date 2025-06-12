@@ -1,0 +1,37 @@
+const express = require('express')
+const app = express()
+const path = require('path')
+const userModel = require('./model/user.model')
+
+const dotenv = require('dotenv')
+dotenv.config()
+const connectToDB = require('./config/db')
+connectToDB()
+
+app.use(express.static(path.join(__dirname,"public")))
+
+app.set('views',path.join(__dirname,'views'))
+app.set('view engine', 'ejs')
+
+app.use(express.urlencoded({extended:true}))
+app.use(express.json())
+
+
+// app.get('/register', (req,res) => {
+//     res.render('register')
+// })
+
+app.post('/register', async (req,res) => {
+    const {username, email , password} = req.body;
+    const newUser = await userModel.create({
+        username,
+        email,
+        password
+    })
+    res.send(newUser);
+})
+
+
+
+module.exports = app;
+

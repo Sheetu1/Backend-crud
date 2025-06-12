@@ -38,15 +38,17 @@ app.post('/read',  async (req,res) => {
 // fineAll
 
 app.post('/readAll',  async (req,res) => {
-    userFind = await userModel.find({email})
+    userFind = await userModel.find()
     res.send(userFind);
 })
 
 // findOneAndUpdate
 
-app.post('/update', (req,res) => {
-    res.send('hello');
+app.post('/update', async (req,res) => {
+   const updatedUser = await userModel.findOneAndUpdate({username: "divya"},{email: "shreya@gmail.com"})
+    res.send(updatedUser);
 })
+
 // findOneAndDelete
 app.post('/delete', (req,res) => {
     res.send('Delete');
